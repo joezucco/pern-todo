@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
-const PORT = 5000
+const PORT = 3000
 
 //middleware
 app.use(cors());
@@ -11,6 +11,7 @@ app.use(express.json()); //req.body
 //ROUTES//
 
 //create a todo
+
 app.post("/todos", async (req, res) => {
   try {
     console.log(req.body);
@@ -27,6 +28,6 @@ app.post("/todos", async (req, res) => {
 
 //delete a todo
 
-app.listen(5000, () => {
+app.listen(3000, () => {
   console.log(`server has started on port ${PORT}`);
 });
