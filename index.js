@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const pool = require("./db");
-const PORT = 3000
+const PORT = 3000;
 
 //middleware
 app.use(cors());
@@ -14,7 +14,12 @@ app.use(express.json()); //req.body
 
 app.post("/todos", async (req, res) => {
   try {
-    console.log(req.body);
+    const { description } = req.body;
+    const newTodo = await pool.query(
+      "INSERT INTO todo (description) VALUES($1)",
+      [description]
+    );
+      res.json(newTodo)
   } catch (err) {
     console.log(err.message);
   }
